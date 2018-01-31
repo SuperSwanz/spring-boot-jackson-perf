@@ -1,0 +1,58 @@
+buildscript {
+	ext {
+		springBootVersion 			=	'1.5.9.RELEASE'
+		mysqlConnectorVersion		=	'6.0.6'		
+		gradleVersion				=	'4.3.1'
+		sourceJavaVersion			=	'1.8'
+		targetJavaVersion			=	'1.8'
+	}
+	repositories {
+		jcenter()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+bootRepackage {
+    mainClass = 'com.sample.app.Runner'
+}
+
+bootRepackage.enabled = true
+
+jar {
+	baseName = 'spring-boot-jackson-perf'
+	version = '0.0.1-SNAPSHOT'
+}
+
+compileJava {
+	targetCompatibility = sourceJavaVersion
+	sourceCompatibility = targetJavaVersion
+}
+
+repositories {
+	jcenter()
+}
+
+dependencies {
+	compile "org.springframework.boot:spring-boot-starter-actuator",
+			"org.springframework.boot:spring-boot-starter-data-jpa",
+			"org.springframework.boot:spring-boot-starter-security",
+			"org.springframework.boot:spring-boot-starter-web",
+			"org.apache.commons:commons-lang3:3.7",
+			"mysql:mysql-connector-java:${mysqlConnectorVersion}"
+			
+	testCompile "org.springframework.boot:spring-boot-starter-test",
+				"org.springframework.security:spring-security-test"
+}
+
+bootRun {
+    addResources = true
+}
+
+task wrapper(type: Wrapper) {
+  gradleVersion = gradleVersion
+}
