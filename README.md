@@ -19,7 +19,7 @@ Then I have added two methods in **UserController**, one for writing json with n
 For running the app,
 - Open **application.properties** file and update "spring.datasource.*" properties as per your configurations.
 - Once, changes are done in **application.properties**, open **"Runner.Java"** file and select run/debug.
-- If app starts successfully, hit. (I did some sort of perf monitoring (threads used 50), attaching perf results for both requests.)<br/><br/><br/>
+- If app starts successfully, hit. (I did some sort of perf monitoring (threads used 10), attaching perf results for both requests.)<br/><br/><br/>
 **GET** http://localhost:9091/api/user/stream/new
 <br/><br/><br/>
 1. This shows stats for CPU, Heap, Classes and Threads when using List <br/>
