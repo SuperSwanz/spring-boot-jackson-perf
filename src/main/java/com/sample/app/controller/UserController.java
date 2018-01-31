@@ -17,13 +17,13 @@ public class UserController {
 	private UserDetailService userDetailService;
 
 	@RequestMapping(value = "/stream/new", method = RequestMethod.GET)
-	public ResponseEntity<?> writeDataAsList() {
+	public ResponseEntity<?> writeDataAsJsonUsingNewObjectMapper() {
 		userDetailService.getUserDetailsByStreamAndConvertToDTOWithNewObjectMapper();
 		return new ResponseEntity(HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/stream/static", method = RequestMethod.GET)
-	public ResponseEntity<?> writeDataAsJson() {
+	public ResponseEntity<?> writeDataAsJsonUsingStaticObjectMapper() {
 		userDetailService.getUserDetailsByStreamAndConvertToDTOWithStaticObjectMapper();
 		return new ResponseEntity(HttpStatus.OK);
 	}
