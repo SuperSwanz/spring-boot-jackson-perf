@@ -22,18 +22,18 @@ For running the app,
 - If app starts successfully, hit. (I did some sort of perf monitoring (threads used 10), attaching perf results for both requests.)<br/><br/><br/>
 **GET** http://localhost:9091/api/user/stream/new
 <br/><br/><br/>
-1. This shows stats for CPU, Heap, Classes and Threads when using List <br/>
+1. This shows stats for CPU, Heap, Classes and Threads when using New ObjectMapper() <br/>
 ![alt text](https://github.com/greyseal/spring-boot-jackson-perf/blob/master/src/main/resources/with_new_mapper_heap_cpu.png "Using New ObjectMapper Monitor")
 <br/><br/><br/>
-2. This shows stats for Visual GC when using List<br/>
+2. This shows stats for Visual GC when using New ObjectMapper()<br/>
 ![alt text](https://github.com/greyseal/spring-boot-jackson-perf/blob/master/src/main/resources/with_new_mapper_gc.png "Using New ObjectMapper GC")
 <br/><br/><br/>
 **GET** http://localhost:9091/api/user/stream/static
 <br/><br/><br/>
-1. This shows stats for CPU, Heap, Classes and Threads when using Stream <br/>
+1. This shows stats for CPU, Heap, Classes and Threads when using Static ObjectMapper <br/>
 ![alt text](https://github.com/greyseal/spring-boot-jackson-perf/blob/master/src/main/resources/with_static_mapper_heap_cpu.png "Using Static ObjectMapper Monitor")
 <br/><br/><br/>
-2. This shows stats for Visual GC when using Stream<br/>
+2. This shows stats for Visual GC when using Static ObjectMapper<br/>
 ![alt text](https://github.com/greyseal/spring-boot-jackson-perf/blob/master/src/main/resources/with_static_mapper_gc.png "Using Static ObjectMapper GC")
 <br/>
 
