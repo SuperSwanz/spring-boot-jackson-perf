@@ -27,4 +27,10 @@ public class UserController {
 		userDetailService.getUserDetailsByStreamAndConvertToDTOWithStaticObjectMapper();
 		return new ResponseEntity(HttpStatus.OK);
 	}
+
+	@RequestMapping(value = "/stream/autowire", method = RequestMethod.GET)
+	public ResponseEntity<?> writeDataAsJsonUsingAutowireObjectMapper() {
+		userDetailService.getUserDetailsByStreamAndConvertToDTOWithAutowireObjectMapper();
+		return new ResponseEntity(HttpStatus.OK);
+	}
 }

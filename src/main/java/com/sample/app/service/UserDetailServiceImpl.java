@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sample.app.dto.UserDetailDTO;
 import com.sample.app.model.UserDetail;
 import com.sample.app.repository.UserDetailRepository;
@@ -17,6 +19,9 @@ import com.sample.app.repository.UserDetailRepository;
 public class UserDetailServiceImpl implements UserDetailService {
 	@PersistenceContext
 	EntityManager entityManager;
+
+	@Autowired
+	private ObjectMapper jacksonObjectMapper;
 
 	@Autowired
 	private UserDetailRepository userDetailRepository;
@@ -43,7 +48,7 @@ public class UserDetailServiceImpl implements UserDetailService {
 		} catch (Exception ix) {
 			ix.printStackTrace();
 		} finally {
-			//System.gc();
+			// System.gc();
 		}
 	}
 
@@ -58,7 +63,26 @@ public class UserDetailServiceImpl implements UserDetailService {
 		} catch (Exception ix) {
 			ix.printStackTrace();
 		} finally {
-			//System.gc();
+			// System.gc();
 		}
 	}
+	
+	@Override
+	@Transactional(readOnly = true)
+	public void getUserDetailsByStreamAndConvertToDTOWithAutowireObjectMapper() {
+		try (Stream<UserDetail> userDetailsStream = userDetailRepository.getAllAsStream()) {
+			userDetailsStream.forEach(userDetail -> {
+				try {
+					jacksonObjectMapper.writeValueAsString(UserDetailDTO.fromUserDetail(userDetail));
+				} catch (JsonProcessingException e) {
+					e.printStackTrace();
+				}
+			});
+			userDetailsStream.close();
+		} catch (Exception ix) {
+			ix.printStackTrace();
+		} finally {
+			// System.gc();
+		}
+	}	
 }

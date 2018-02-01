@@ -8,6 +8,8 @@ public interface UserDetailService {
 	public Stream<UserDetail> getUserDetailsByStream();
 
 	public void getUserDetailsByStreamAndConvertToDTOWithNewObjectMapper();
-	
+
 	public void getUserDetailsByStreamAndConvertToDTOWithStaticObjectMapper();
-	}
+
+	public void getUserDetailsByStreamAndConvertToDTOWithAutowireObjectMapper();
+}
