@@ -45,7 +45,6 @@ For running the app,
 ![alt text](https://github.com/greyseal/spring-boot-jackson-perf/blob/master/src/main/resources/with_autowire_mapper_gc.png "Using Autowire ObjectMapper GC")
 <br/>
 
-
 **Note** :  Looking at **[new_mapper_gc.png]**, the old generation is at its max capacity for a period of time. Heap increases gradually and looks choked up for a certain duration until HTTP response is sent back to the client. In case of any new HTTP request/s during this critical period, we are highly likely to get **OutOfMemoryError**. If we look at the [new_mapper_heap_cpu.png], the CPU was busy most of the time and was running at max capacity and the process took longer to complete. <br/><br/>
 Now, if we look at **[static_mapper_gc.png]**, the Old generation is just a flat line with a relatively very low spike in the beginning (no objects are getting tenured) and thus allowing room to handle any other incoming HTTP requests smartly. If we look at [static_mapper_heap_cpu.png], CPU usage was high but comparatively for a less timeframe and so the Heap size. <br/><br/>
 Lastly, if we look at **[autowire_mapper_gc.png]**, the Old generation is just a flat line with a relatively very low spike in the beginning (no objects are getting tenured) and thus allowing room to handle any other incoming HTTP requests smartly but slightly higher than the static mapper. If we look at [autowire_mapper_heap_cpu.png], CPU usage was high but comparatively for a less timeframe similar to static mapper but higher heap size than the static mapper. <br/><br/>
