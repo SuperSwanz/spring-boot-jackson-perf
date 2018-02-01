@@ -35,7 +35,8 @@ For running the app,
 <br/><br/><br/>
 2. This shows stats for Visual GC when using Static ObjectMapper<br/>
 ![alt text](https://github.com/greyseal/spring-boot-jackson-perf/blob/master/src/main/resources/with_static_mapper_gc.png "Using Static ObjectMapper GC")
-<br/>
+<br/><br/><br/>
+
 **GET** http://localhost:9091/api/user/stream/autowire
 <br/><br/><br/>
 1. This shows stats for CPU, Heap, Classes and Threads when using Autowire ObjectMapper <br/>
